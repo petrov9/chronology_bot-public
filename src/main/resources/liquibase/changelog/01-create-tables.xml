@@ -1,0 +1,61 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <!-- table -->
+    <changeSet author="Anton Petrov" id="uc-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_content"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_content">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="content_PK"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="DATE WITHOUT TIME ZONE">
+            </column>
+            <column name="media_url" type="VARCHAR(255)">
+            </column>
+            <column name="description" type="VARCHAR(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Petrov" id="user_info-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_info"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_info">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_info_PK"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Anton Petrov" id="user_notifications-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_notifications"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user_notifications">
+            <column name="chat_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_notifications_PK"/>
+            </column>
+            <column name="is_notify" type="boolean">
+            </column>
+            <column name="zone_offset" type="VARCHAR(255)">
+            </column>
+            <column name="time" type="TIME WITHOUT TIME ZONE">
+            </column>
+            <column name="date" type="DATE WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

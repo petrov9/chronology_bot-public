@@ -1,0 +1,37 @@
+spring:
+
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.xml
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${APP_DB_USERNAME:postgres}
+    password: ${APP_DB_PASSWORD:postgres}
+    url: ${APP_DB_URL:jdbc:postgresql://localhost:5432/chronology_bot_dev}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+
+logging:
+
+  file:
+    path: ./log
+
+  level:
+    org:
+      springframework:
+        web: ERROR
+        security: ERROR
+
+home:
+  unix: ${APP_HOME_UNIX:/home/bot}
+  windows: ${APP_HOME_WINDOWS:D:/bot}
+
+ffmpeg:
+  url: ${APP_FFMPEG_URL:C:/Users/petro/Desktop/ffmpeg/bin/ffmpeg.exe}
+
+bot:
+  username: year_in_frames
+  token: -

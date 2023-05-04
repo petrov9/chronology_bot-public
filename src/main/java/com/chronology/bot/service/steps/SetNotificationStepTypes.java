@@ -1,0 +1,9 @@
+package com.chronology.bot.service.steps;
+
+public enum SetNotificationStepTypes implements StepType {
+
+    ASK_IF_WANT_TO_CHANGE, ANSWER_IF_WANT_TO_CHANGE,
+    ASK_TURN_ON_NOTIFICATIONS, ANSWER_TURN_ON_NOTIFICATIONS,
+    ASK_CURRENT_DATE,ANSWER_CURRENT_DATE,
+    ASK_NOTIFICATION_TIME,ANSWER_NOTIFICATION_TIME,
+}

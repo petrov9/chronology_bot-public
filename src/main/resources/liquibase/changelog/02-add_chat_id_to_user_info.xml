@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet author="Anton Petrov" id="add_chat_id">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="user_info" columnName="chat_id"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="user_info">
+            <column name="chat_id" type="BIGINT">
+            </column>
+        </addColumn>
+        <sql>UPDATE user_info set chat_id = user_id</sql>
+
+        <addNotNullConstraint tableName="user_info" columnName="chat_id"/>
+
+    </changeSet>
+
+    <changeSet author="Anton Petrov" id="rename_ chat_id_to_user_id">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="user_notifications" columnName="chat_id"/>
+        </preConditions>
+
+        <renameColumn tableName="user_notifications" oldColumnName="chat_id" newColumnName="user_id"/>
+    </changeSet>
+</databaseChangeLog>
